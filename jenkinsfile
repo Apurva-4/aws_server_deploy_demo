@@ -1,0 +1,19 @@
+pipeline {
+  agent any
+  stages {
+    stage('Clone repository') {
+      steps {
+        git 'https://github.com/Apurva-4/aws_server_deploy_demo.git'
+      }
+    }
+    stage('Deploy to Kubernetes') {
+      steps {
+        script {
+          def pod_name = sh(returnStdout: true, script: 'kubectl get pods httpd-deployment-859c98485f-rx6ml -n frontend')
+          sh "kubectl cp aws_server_deploy_demo/demo.html $pod_name:/usr/local/apache2/htdocs"
+          sh "kubectl restart pod $pod_name"
+      }
+    }
+  }
+}
+}
