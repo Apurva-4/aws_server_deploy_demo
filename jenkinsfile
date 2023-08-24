@@ -3,15 +3,15 @@ pipeline {
   stages {
     stage('Clone repository') {
       steps {
+        sh "whoami"
         git 'https://github.com/Apurva-4/aws_server_deploy_demo.git'
+        sh "curl -LO 'https://dl.k8s.io/release/bin/linux/amd64/kubectl'"
+        sh " install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl"
       }
     }
     stage('Deploy to Kubernetes') {
       steps {
         script {
-          sh "curl -LO 'https://dl.k8s.io/release/bin/linux/amd64/kubectl'"
-          sh " curl -LO 'https://dl.k8s.io/bin/linux/amd64/kubectl.sha256'"
-          sh " install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl"
           def pod_name = sh(returnStdout: true, script: 'kubectl get pods httpd-deployment-859c98485f-rx6ml -n frontend')
             sh "kubectl cp aws_server_deploy_demo/demo.html $pod_name:/usr/local/apache2/htdocs"
             sh "kubectl restart pod $pod_name"
