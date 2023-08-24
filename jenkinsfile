@@ -9,7 +9,7 @@ pipeline {
     stage('Deploy to Kubernetes') {
       steps {
         pod_name = kubectl get pods -l app=apache -n frontend
-        kubectl cp -r ./ ./pod_name:/usr/local/apache2/htdocs
+        kubectl cp -r aws_server_deploy_demo/ ./pod_name:/usr/local/apache2/htdocs
         kubectl restart pod_name
       }
     }
