@@ -8,11 +8,14 @@ pipeline {
     }
     stage('Deploy to Kubernetes') {
       steps {
-        sudo apt-get update
-        sudo apt-get install -y kubectl
-        pod_name = kubectl get pods -l app=apache -n frontend
-        kubectl cp -r aws_server_deploy_demo/ ./pod_name:/usr/local/apache2/htdocs
-        kubectl restart pod_name
+        script {
+          sh "curl -LO 'https://dl.k8s.io/release/bin/linux/amd64/kubectl'"
+          sh " curl -LO 'https://dl.k8s.io/bin/linux/amd64/kubectl.sha256'"
+          sh " install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl"
+          def pod_name = sh(returnStdout: true, script: 'kubectl get pods httpd-deployment-859c98485f-rx6ml -n frontend')
+            sh "kubectl cp aws_server_deploy_demo/demo.html $pod_name:/usr/local/apache2/htdocs"
+            sh "kubectl restart pod $pod_name"
+      }
       }
     }
   }
