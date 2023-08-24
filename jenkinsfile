@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Clone repository') {
       steps {
-        git 'https://github.com/Apurva-4/aws_server_deploy_demo.git'
+       sh 'kubectl get pods -n frontend'
       }
     }
     stage('Deploy to Kubernetes') {
