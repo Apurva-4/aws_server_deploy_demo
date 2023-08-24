@@ -3,6 +3,7 @@ pipeline {
   stages {
     stage('Clone repository') {
       steps {
+        sh"whoami"
         git 'https://github.com/Apurva-4/aws_server_deploy_demo.git'
       }
     }
