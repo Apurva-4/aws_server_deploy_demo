@@ -5,8 +5,6 @@ pipeline {
       steps {
         sh "whoami"
         git 'https://github.com/Apurva-4/aws_server_deploy_demo.git'
-        sh "curl -LO 'https://dl.k8s.io/release/bin/linux/amd64/kubectl'"
-        sh " install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl"
       }
     }
     stage('Deploy to Kubernetes') {
