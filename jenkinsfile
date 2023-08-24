@@ -8,12 +8,10 @@ pipeline {
     }
     stage('Deploy to Kubernetes') {
       steps {
-        script {
-          def pod_name = sh(returnStdout: true, script: 'kubectl get pods httpd-deployment-859c98485f-rx6ml -n frontend')
-          sh "kubectl cp aws_server_deploy_demo/demo.html $pod_name:/usr/local/apache2/htdocs"
-          sh "kubectl restart pod $pod_name"
+        pod_name = kubectl get pods -l app=apache -n frontend
+        kubectl cp -r ./ ./pod_name:/usr/local/apache2/htdocs
+        kubectl restart pod_name
       }
     }
   }
-}
 }
