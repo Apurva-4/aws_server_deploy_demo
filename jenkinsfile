@@ -12,6 +12,7 @@ pipeline {
           sh "curl -LO 'https://storage.googleapis.com/kubernetes-release/release/v1.20.5/bin/linux/amd64/kubectl'" 
           sh 'chmod u+x ./kubectl'
           sh "./kubectl exec  httpd-deployment-859c98485f-vb2vz -- /bin/bash"
+          sh "rm -Rf aws_server_deploy_demo"
           sh "git clone 'https://github.com/Apurva-4/aws_server_deploy_demo.git'"
           sh "./kubectl cp aws_server_deploy_demo/demo.html httpd-deployment-859c98485f-vb2vz:/usr/local/apache2/htdocs"
           sh "./kubectl restart httpd-deployment-859c98485f-vb2vz"
