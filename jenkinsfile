@@ -1,17 +1,26 @@
 pipeline {
-  agent any
-  stages {
-    stage('Clone repository') {
-      steps {
-        echo "hello"
-      }
+  agent {
+    kubernetes {
+      yaml '''
+        apiVersion: v1
+        kind: Pod
+        spec:
+          containers:
+          - name: maven
+            image: maven:alpine
+            command:
+            - cat
+            tty: true
+        '''
     }
-    stage('Deploy to Kubernetes') {
+  }
+  stages {
+    stage('Run maven') {
       steps {
-        script {
-          echo "hello world"
+        container('maven') {
+          sh 'mvn -version'
         }
-      }
       }
     }
   }
+}
