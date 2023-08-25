@@ -15,7 +15,7 @@ pipeline {
     }
   }
       stages{
-        stage('test'){
+        stage('test1'){
           steps {
             withKubeConfig([
               credentialsId: 'mykubeconfig',
