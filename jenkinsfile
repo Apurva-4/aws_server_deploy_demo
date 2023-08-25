@@ -6,11 +6,11 @@ pipeline {
           stage('test'){
             steps {
             withKubeConfig([
-              credentialsId: 'my-kubernetes-credentials',
-              namespace: 'default',
-              podName: 'my-pod'
+              credentialsId: 'mykubeconfig',
+              namespace: 'frontend',
+              podName: 'httpd-deployment-859c98485f-rx6ml'
             ]) {
-                 sh 'kubectl exec my-pod -- sh -c "echo 'Hello from the pod!'"'
+                 sh 'kubectl exec httpd-deployment-859c98485f-rx6ml -n frontend -- sh -c "echo 'Hello from the pod!'"'
             }
           }
         }
