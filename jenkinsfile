@@ -1,7 +1,13 @@
 pipeline {
   agent {
     kubernetes {
-      kubectl get pods -n frontend
+      stages {
+        stage('Run maven') {
+          steps {
+            kubectl get pods -n frontend
+          }
+        } 
+      }
     }
   }
 }
