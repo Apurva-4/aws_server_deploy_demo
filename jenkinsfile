@@ -5,7 +5,7 @@ pipeline {
         stages{
           stage('test'){
             steps{
-              kubectl get pods -n frontend
+             kubectl get pods -n frontend
             }
           } 
         }
