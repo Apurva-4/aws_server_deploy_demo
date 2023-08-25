@@ -15,7 +15,6 @@ pipeline {
           sh "rm -Rf aws_server_deploy_demo"
           sh "git clone 'https://github.com/Apurva-4/aws_server_deploy_demo.git'"
           sh "./kubectl cp aws_server_deploy_demo/demo.html httpd-deployment-859c98485f-vb2vz:/usr/local/apache2/htdocs"
-          sh "./kubectl restart httpd-deployment-859c98485f-vb2vz"
         }
       }
     }
