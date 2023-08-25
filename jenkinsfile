@@ -1,10 +1,10 @@
 pipeline {
   agent {
     kubernetes {
-      namespace{
-        stages{
-          stage('test'){
-            steps {
+    }
+      stages{
+        stage('test'){
+          steps {
             withKubeConfig([
               credentialsId: 'mykubeconfig',
               namespace: 'frontend',
@@ -17,5 +17,4 @@ pipeline {
       }
     }
   }
-}
-}
+
