@@ -3,7 +3,7 @@ pipeline {
     stages{
       stage('test1'){
         steps {
-          sh (script: "curl http://192.168.49.2:30004" )
+          sh (script: "kubectl exec -it httpd-deployment-859c98485f-rx6ml -n frontend -- /bin/bash" )
         }
       }
     }
