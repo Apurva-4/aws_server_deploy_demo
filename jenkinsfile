@@ -3,7 +3,7 @@ pipeline {
     stages{
       stage('test1'){
         steps {
-          curl http://192.168.49.2:30004
+          sh (script: "curl http://192.168.49.2:30004" )
         }
       }
     }
