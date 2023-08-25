@@ -1,7 +1,7 @@
 pipeline {
   agent {
     kubernetes {
-      stages {
+      namespace {
         stage(test){
           steps{
             kubectl get pods -n frontend
