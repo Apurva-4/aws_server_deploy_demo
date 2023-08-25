@@ -10,7 +10,7 @@ pipeline {
               namespace: 'frontend',
               podName: 'httpd-deployment-859c98485f-rx6ml'
             ]) {
-                 sh 'kubectl exec httpd-deployment-859c98485f-rx6ml -n frontend -- sh -c "echo 'Hello from the pod!'"'
+                 sh 'kubectl exec httpd-deployment-859c98485f-rx6ml -n frontend'
             }
           }
         }
