@@ -17,12 +17,9 @@ pipeline {
       stages{
         stage('test1'){
           steps {
-            withKubeConfig([
-              credentialsId: 'mykubeconfig',
-              namespace: 'frontend',
-              podName: 'httpd-deployment-859c98485f-rx6ml'
-            ]) {
-                 sh 'kubectl exec httpd-deployment-859c98485f-rx6ml -n frontend'
+            kubeconfig(credentialsId: 'mykubeconfig', serverUrl: 'https://192.168.49.2:8443',namespace: 'frontend',podName: 'httpd-deployment-859c98485f-rx6ml') 
+            {
+              sh 'kubectl exec httpd-deployment-859c98485f-rx6ml -n frontend'
             }
           }
         }
