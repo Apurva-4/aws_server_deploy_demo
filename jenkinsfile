@@ -1,15 +1,21 @@
 pipeline {
   agent {
     kubernetes {
-      namespace {
+      namespace{
         stages{
           stage('test'){
-            steps{
-             kubectl get pods -n frontend
+            steps {
+            withKubeConfig([
+              credentialsId: 'my-kubernetes-credentials',
+              namespace: 'default',
+              podName: 'my-pod'
+            ]) {
+                 sh 'kubectl exec my-pod -- sh -c "echo 'Hello from the pod!'"'
             }
-          } 
+          }
         }
       }
     }
   }
+}
 }
