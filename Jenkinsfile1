@@ -24,9 +24,9 @@ pipeline{
         stage('Build') {
 
 			steps {
-                sh "curl -fsSL https://get.docker.com -o docker.sh"
-                sh "sh docker.sh"
-                sh "chmod u+x ./docker"
+                sh "curl -fsSL https://get.docker.com -o get-docker.sh"
+                sh "sh get-docker.sh"
+                sh "chmod u+x ./get-docker"
 				sh './docker build -t 2002456/myrepo:latest .'
 			}
 		}
