@@ -25,7 +25,7 @@ pipeline{
 
 			steps {
                 sh "apt install docker.io"
-				sh 'docker build -t 2002456/myrepo:latest .'
+				sh './docker build -t 2002456/myrepo:latest .'
 			}
 		}
 
