@@ -12,6 +12,7 @@ pipeline{
 
 			steps {
 				git 'https://github.com/Apurva-4/aws_server_deploy_demo.git'
+                sh "apt install docker.io"
 			}
 		}
 
