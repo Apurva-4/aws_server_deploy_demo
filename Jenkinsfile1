@@ -9,10 +9,8 @@ pipeline{
 	stages {
 	    
 	    stage('gitclone') {
-
-			steps {
-				git 'https://github.com/Apurva-4/aws_server_deploy_demo.git'
-                sh "apt install docker.io"
+            steps {
+				git'https://github.com/Apurva-4/aws_server_deploy_demo.git'
 			}
 		}
 
@@ -25,8 +23,7 @@ pipeline{
         stage('Build') {
 
 			steps {
-                sh "apt install docker.io"
-				sh './docker build -t 2002456/myrepo:latest .'
+                sh 'docker build -t 2002456/myrepo:latest .'
 			}
 		}
 
