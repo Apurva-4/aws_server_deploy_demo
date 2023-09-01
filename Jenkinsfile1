@@ -21,6 +21,16 @@ pipeline{
 				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
 			}
 		}
+        stage('Build') {
+
+			steps {
+                sh "curl -fsSL https://get.docker.com -o docker.sh"
+                sh "sh docker.sh"
+                sh "chmod u+x ./docker"
+				sh './docker build -t 2002456/myrepo:latest .'
+			}
+		}
+
 
 		stage('Push') {
 
