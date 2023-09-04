@@ -1,6 +1,6 @@
 pipeline{
 
-	agent {label "docker-build-agent"}
+	agent {label "docker"}
 
 	environment {
 		DOCKERHUB_CREDENTIALS=credentials('dockerhub')
